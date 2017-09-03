@@ -123,5 +123,53 @@ print("%s minutes" % start_time)
 ########################################################################
 ########################################################################
 
+#Part4
+
+BinaryString = 0
+ 
+def GetUnsignedBinaryValue(BinaryString):
+  
+    convertBinary = raw_input('enter a binary number:')
+  
+    for digit in convertBinary:
+        BinaryString = BinaryString * 2 + int(digit)
+  
+    print ('The decimal number is', BinaryString)
+     
+GetUnsignedBinaryValue(BinaryString)
+ 
+def GetDecimalValue():
+ 
+    convertDecimal = input('enter a decimal number:')
+    I = int(convertDecimal)
+   
+    binStr = ''
+    while I > 0:
+        binStr = str(I % 2) + binStr
+        I = I // 2
+    print ('The binary number is:',binStr)
+ 
+GetDecimalValue()
+
+########################################################################
+########################################################################
+
+#Part5
+
+BinaryString = 8
+
+
+#def GetSignedBinaryValue(BinaryString):
+
+convertSignedBinary = raw_input('enter a binary number:')
+ 
+convertSignedBinary = (convertSignedBinary % 2) ** BinaryString 
+signed = convertSignedBinary - 2**BinaryString 
     
+if convertSignedBinary >= 2 ** (BinaryString-1):
+    print(signed)
+else:
+    print(signed)
+        
+#GetSignedBinaryValue(BinaryString)
 
