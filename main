@@ -1,195 +1,55 @@
-##Jack Guckert 
-##00797014
-
-import random
+import random 
 import time
 
-#Part1
 
-#Never switches doors
-  
-count = 1000000
-wins = 0
-loose = 0
-  
-while (count > 0):
-      
-    def counting (count):
-        assert (count > 0)
-          
-    doors = list(range(1,4))
-  
-    winningdoor = random.choice(doors)
-  
-    contestantdoor = random.choice(doors)
-    doors.remove(contestantdoor)
-  
-    loosingdoor = random.choice(doors)
-    doors.remove(loosingdoor)
-  
-    if winningdoor == contestantdoor:
-        wins = wins + 1 
-          
-    else:
-        loose = loose + 1
-          
-    count = count - 1 
-      
-wonPercentage = wins / 1000000.0
-lostPercentage = loose / 1000000.0
-  
-print('Never Switching')
-print(wonPercentage, 'percent won')
-print(lostPercentage, 'percent lost')
-print(wins,"wins")
-print(loose, "lost")
+#This program creates a list of 100 random items and inserts a random
+#number into a random index. It then makes the unsorted list a sorted
+#list. 
 
+#It then needs to repeat this process until we have a list of 10,000 items with a random number inserted in that list 
+#at one point or another 
 
-#Always switches doors 
+#Then it needs to print out how long it took to insert a random number into each of the one hundread lists. 
 
-count = 1000000
-wins = 0
-loose = 0
- 
-while (count > 0):
-     
-    def counting (count):
-        assert (count > 0)
-         
-    doors = list(range(1,4))
- 
-    winningdoor = random.choice(doors)
- 
-    contestantdoor = random.choice(doors)
-    doors.remove(contestantdoor)
- 
-    loosingdoor = random.choice(doors)
- 
-    contestantdoor = random.choice(doors)
-     
-    if winningdoor == contestantdoor:
-        wins = wins + 1 
-         
-    else:
-        loose = loose + 1
-         
-    count = count - 1 
-     
-wonPercentage = wins / 1000000.0
-lostPercentage = loose / 1000000.0
- 
-print('Always Switching')
-print(wonPercentage, 'percent won')
-print(lostPercentage, 'percent lost')
-print(wins,"wins")
-print(loose, "lost")
+howLong = 1000
+listLength = 100
+elementScope = 1000
 
+a = random.sample(range(howLong), listLength)
 
-########################################################################
-########################################################################
-
-#Part2
-
-def timeListAccess(theList):
-    index = random.randint(0, len(theList))
-    start = time.time()
-    for x in range(0, 1000):
-        newNum = theList[index]
-    end = time.time()
-    print("Length of List %s" % len(theList))
-    print("--- %s seconds ---" % (end - start))
- 
-def doThing():
-    listSize = 1000
-    increaseListAmount = 1000
-    while listSize <= 100000:
-        newList = list(range(0, listSize))
-        timeListAccess(newList)
-        listSize += increaseListAmount
- 
- 
-doThing()
-
-########################################################################
-########################################################################
-
-#Part3
-
-def timeListAccess(theList):
-    index = random.randint(0, len(theList))
-    start = time.time()
-    for x in range(0, 1000):
-        newNum = theList[index]
-    end = time.time()
-    print("Length of List %s" % len(theList))
-    print("- %s seconds -" % (end - start))
- 
-def doThing():
-    listSize = 1000
-    increaseListAmount = 1000
-    while listSize <= 100000:
-        newList = list(range(0, listSize))
-        timeListAccess(newList)
-        listSize += increaseListAmount
- 
- 
-doThing()
-
-########################################################################
-########################################################################
-
-#Part4
-
-BinaryString = 0
+def selectionSort(myList):
     
-def GetUnsignedBinaryValue(BinaryString):
-     
-    convertBinary = raw_input('enter a binary number:')
-     
-    for digit in convertBinary:
-        BinaryString = BinaryString * 2 + int(digit)
-     
-    print ('The decimal number is', BinaryString)
+    increaseList = 100
+    listLength = 100
+    
+    while listLength <= 1000:
         
-GetUnsignedBinaryValue(BinaryString)
-   
-def GetDecimalValue():
-   
-    convertDecimal = input('enter a decimal number:')
-    I = int(convertDecimal)
-     
-    binStr = ''
-    while I > 0:
-        binStr = str(I % 2) + binStr
-        I = I // 2
-    print ('The binary number is:',binStr)
-   
-GetDecimalValue()
+        a = random.sample(range(howLong), listLength)
 
-########################################################################
-########################################################################
+        
+        indexWhat = random.randint(0,listLength)
+        insertNumber = random.randint(0,listLength)
 
-#Part5
+        for slot in range(len(myList)-1,0,-1):
+            position = 0
+            for location in range(1,slot + 1):
+                if myList[location] > myList[position]:
+                    position = location
+  
+            x = myList[slot]
+            myList[slot] = myList[position]
+            myList[position] = x
+        
+        a.insert(indexWhat, insertNumber) 
+        
+        listLength = listLength + increaseList
+        
+        #timeListAccess(newList)
+        
+        
+    #print a 
+    print len(a)
+    print listLength
 
-numBits = 8
-BinaryString = 0
-
-def GetsignedBinaryValue(BinaryString):
-       
-    convertBinary = raw_input('enter a binary number:')
-       
-    for digit in convertBinary:
-        BinaryString = BinaryString * 2 + int(digit)           
-     
-    unsigned = BinaryString % 2 ** numBits 
-    signed = unsigned - 2 ** numBits 
-    if unsigned >= 2 ** (numBits - 1):
-       
-        print ('The decimal number is', signed)
-     
-          
-GetsignedBinaryValue(BinaryString)
-
-
-
-
+    
+selectionSort(a)
