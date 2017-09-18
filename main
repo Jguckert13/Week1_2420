@@ -1,16 +1,3 @@
-import random 
-import time
-
-
-#This program creates a list of 100 random items and inserts a random
-#number into a random index. It then makes the unsorted list a sorted
-#list. 
-
-#It then needs to repeat this process until we have a list of 10,000 items with a random number inserted in that list 
-#at one point or another 
-
-#Then it needs to print out how long it took to insert a random number into each of the one hundread lists. 
-
 howLong = 1000
 listLength = 100
 elementScope = 1000
@@ -22,34 +9,33 @@ def selectionSort(myList):
     increaseList = 100
     listLength = 100
     
-    while listLength <= 1000:
-        
-        a = random.sample(range(howLong), listLength)
+    while listLength <= 10000:
+                
+        a = random.sample(range(listLength), listLength)
 
         
         indexWhat = random.randint(0,listLength)
         insertNumber = random.randint(0,listLength)
 
-        for slot in range(len(myList)-1,0,-1):
+        for slot in range(len(a)-1,0,-1):
             position = 0
             for location in range(1,slot + 1):
-                if myList[location] > myList[position]:
+                if a[location] > a[position]:
                     position = location
   
-            x = myList[slot]
-            myList[slot] = myList[position]
-            myList[position] = x
+            x = a[slot]
+            a[slot] = a[position]
+            a[position] = x
         
         a.insert(indexWhat, insertNumber) 
         
         listLength = listLength + increaseList
         
+        print listLength
+        
+    print a 
+        
         #timeListAccess(newList)
         
-        
-    #print a 
-    print len(a)
-    print listLength
-
     
 selectionSort(a)
